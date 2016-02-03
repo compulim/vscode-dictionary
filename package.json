@@ -2,7 +2,7 @@
   "name": "compulim-vscode-dictionary",
   "displayName": "Dictionary Lookup",
   "description": "Lookup definitions and synonyms from various popular online dictionaries.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "Compulim",
   "engines": {
     "vscode": "^0.10.1"
@@ -13,6 +13,8 @@
     "type": "git",
     "url": "https://github.com/compulim/vscode-dictionary.git"
   },
+  "bugs": "https://github.com/compulim/vscode-dictionary/issues/",
+  "homepage": "https://github.com/compulim/vscode-dictionary/blob/master/README.md",
   "categories": [
     "Other"
   ],
