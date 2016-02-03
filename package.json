@@ -1,0 +1,74 @@
+{
+  "name": "compulim-vscode-dictionary",
+  "displayName": "Dictionary Lookup",
+  "description": "Lookup definitions and synonyms from various popular online dictionaries.",
+  "version": "0.0.3",
+  "publisher": "Compulim",
+  "engines": {
+    "vscode": "^0.10.1"
+  },
+  "icon": "icon.png",
+  "galleryBanner.color": "#0D5CAB",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/compulim/vscode-dictionary.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:dictionary.bing.lookupSelected",
+    "onCommand:dictionary.google.translateSelected",
+    "onCommand:dictionary.thesaurus.lookupSelectedSynonyms",
+    "onCommand:dictionary.alterVista.replaceSelectedWithSynonyms"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "dictionary.bing.lookupSelected",
+        "title": "Dictionary: Lookup definitions of selected words with Bing Translator"
+      },
+      {
+        "command": "dictionary.google.translateSelected",
+        "title": "Dictionary: Translate selected words with Google Translate"
+      },
+      {
+        "command": "dictionary.thesaurus.lookupSelectedSynonyms",
+        "title": "Dictionary: Lookup synonyms of selected words with Thesaurus.com"
+      },
+      {
+        "command": "dictionary.alterVista.replaceSelectedWithSynonyms",
+        "title": "Dictionary: Replace selected words with synonyms from Altervista.org"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Dictionary configuration",
+      "properties": {
+        "dictionary.google.translateFromLanguage": {
+          "type": "string",
+          "default": "auto",
+          "description": "Google Translate: Language to translate from, \"auto\" for auto detection"
+        },
+        "dictionary.google.translateToLanguage": {
+          "type": "string",
+          "default": "ja",
+          "description": "Google Translate: Language to translate into"
+        },
+        "dictionary.altervista.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Altervista Thesaurus: API key to use, empty to use default"
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "vscode": "0.10.x"
+  },
+  "dependencies": {
+    "node-fetch": "^1.3.3",
+    "open": "0.0.5"
+  }
+}
