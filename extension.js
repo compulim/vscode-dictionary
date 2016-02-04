@@ -34,11 +34,11 @@ function activate(context) {
         .then(
           res => {
             if (res.status === 403) {
-              return window.showErrorMessage('Thesaurus service is too busy right now, please try again later or set your own API key in preferneces.');
+              throw new Error('Thesaurus service is too busy right now, please try again later or set your own API key in preferneces.');
             } else if (res.status === 404) {
-              return window.showErrorMessage('Cannot find the word selected, check spelling.');
+              throw new Error('Cannot find the word selected, check spelling.');
             } else if (res.status !== 200) {
-              return window.showErrorMessage('Failed to contact server to lookup synonyms.');
+              throw new Error('Failed to contact server to lookup synonyms.');
             }
 
             return res.json().then(json => json.response.reduce((words, list) => {
@@ -61,12 +61,16 @@ function activate(context) {
               }
 
               return xx > yy ? 1 : xx < yy ? -1 : 0;
-            }));
+            })).catch(err => {
+              throw new Error('Failed to understand server response, please submit a bug.');
+            });
           },
           err => {
-            window.showErrorMessage('Failed to contact server to lookup synonyms.');
+            throw new Error('Failed to contact server to lookup synonyms.');
           }
-        );
+        ).catch(err => {
+          window.showErrorMessage(err.message);
+        });
 
     window.showQuickPick(lookupSynonymsTask).then(selectedWord => {
       textEditor.edit(edit => {
