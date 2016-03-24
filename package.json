@@ -15,6 +15,12 @@
   },
   "bugs": "https://github.com/compulim/vscode-dictionary/issues/",
   "homepage": "https://github.com/compulim/vscode-dictionary/blob/master/README.md",
+  "keywords": [
+    "dictionary",
+    "thesaurus",
+    "translate",
+    "translator"
+  ],
   "categories": [
     "Other"
   ],
