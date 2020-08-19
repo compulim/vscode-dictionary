@@ -121,21 +121,13 @@ function isUpper(c) {
 
 function getSelectionRange(textEditor) {
   let
-    selection = textEditor.selection,
-    start = selection.start,
-    end = selection.end;
+    start = textEditor.selection.start,
+    end = textEditor.selection.end;
 
   if (start.line === end.line && start.character === end.character) {
-    start = new vscode.Position(start.line, 0);
-    end = new vscode.Position(
-      start.line,
-      textEditor.document.getText(
-        new vscode.Range(
-          start,
-          new vscode.Position(start.line, Infinity)
-        )
-      ).length
-    );
+    const rangeWordAtCursor = textEditor.document.getWordRangeAtPosition(end);
+    start = rangeWordAtCursor.start;
+    end = rangeWordAtCursor.end;
   }
 
   return new vscode.Range(start, end);
