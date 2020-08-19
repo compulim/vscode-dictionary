@@ -25,7 +25,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:dictionary.bing.lookupSelected",
+    "onCommand:dictionary.lookupSelected",
     "onCommand:dictionary.google.translateSelected",
     "onCommand:dictionary.thesaurus.lookupSelectedSynonyms",
     "onCommand:dictionary.alterVista.replaceSelectedWithSynonyms"
@@ -34,8 +34,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "dictionary.bing.lookupSelected",
-        "title": "Dictionary: Lookup definitions of selected words with Bing Translator"
+        "command": "dictionary.lookupSelected",
+        "title": "Dictionary: Lookup definitions of selected words"
       },
       {
         "command": "dictionary.google.translateSelected",
@@ -52,8 +52,14 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "Dictionary configuration",
+      "title": "Dictionary Lookup",
       "properties": {
+        "dictionary.lookupSelected.lookupURL": {
+          "type": "string",
+          "format": "uri",
+          "default": "",
+          "description": "The URL for dictionary lookup. The word will be appended to the URL. Defaulted to Bing."
+        },
         "dictionary.google.translateFromLanguage": {
           "type": "string",
           "default": "auto",
