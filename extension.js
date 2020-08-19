@@ -7,7 +7,8 @@ const
   open = require('open'),
   vscode = require('vscode'),
   window = vscode.window,
-  DEFAULT_ALTER_VISTA_KEY = '3DqZ2Rl83LUbFAAw8SOz';
+  DEFAULT_ALTER_VISTA_KEY = '3DqZ2Rl83LUbFAAw8SOz',
+  DEFAULT_LOOKUP_SELECTED_URL = 'https://www.bing.com/search?q=define%20';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -18,8 +19,9 @@ function activate(context) {
     open(`https://translate.google.com/#${encodeURI(configuration.translateFromLanguage)}/${encodeURI(configuration.translateToLanguage)}/${encodeURI(getSelectedText(textEditor))}`);
   }));
 
-  context.subscriptions.push(vscode.commands.registerTextEditorCommand('dictionary.bing.lookupSelected', (textEditor, edit) => {
-    open(`https://www.bing.com/search?q=${encodeURI(`define ${getSelectedText(textEditor)}`)}`);
+  context.subscriptions.push(vscode.commands.registerTextEditorCommand('dictionary.lookupSelected', (textEditor, edit) => {
+    const lookupURL = vscode.workspace.getConfiguration('dictionary.lookupSelected').lookupURL || DEFAULT_LOOKUP_SELECTED_URL;
+    open(lookupURL + encodeURI(getSelectedText(textEditor)));
   }));
 
   context.subscriptions.push(vscode.commands.registerTextEditorCommand('dictionary.thesaurus.lookupSelectedSynonyms', (textEditor, edit) => {
